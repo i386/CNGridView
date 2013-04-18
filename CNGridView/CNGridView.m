@@ -926,6 +926,7 @@ CNItemPoint CNMakeItemPoint(NSUInteger aColumn, NSUInteger aRow) {
     
     if (_itemContextMenu)
     {
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
         NSEvent *fakeMouseEvent = [NSEvent mouseEventWithType:NSRightMouseDown
                                                      location:location
                                                 modifierFlags:0
@@ -938,7 +939,7 @@ CNItemPoint CNMakeItemPoint(NSUInteger aColumn, NSUInteger aRow) {
         
         for (NSMenuItem *menuItem in _itemContextMenu.itemArray)
         {
-            [menuItem setRepresentedObject:[NSNumber numberWithUnsignedInteger:index]];
+            [menuItem setRepresentedObject:indexSet];
         }
         
         [NSMenu popUpContextMenu:_itemContextMenu withEvent:fakeMouseEvent forView:self];
